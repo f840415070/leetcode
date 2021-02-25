@@ -7,22 +7,15 @@
 # @lc code=start
 class Solution:
     def countAndSay(self, n: int) -> str:
-        x = '1'
-        if n == 1:
-            return x
-        i = 1
-        while i < n:
-            y = ''
-            j = 1
-            for k in range(len(x) - 1):
-                if x[k] == x[k + 1]:
-                    j += 1
-                else:
-                    y += str(j) + x[k]
-                    j = 1
-            x = y
-            i += 1
-        return x
+        result = '1'
+        for _ in range(n - 1):
+            p, s = 0, ''
+            for i, char in enumerate(result):
+                if result[p] != char:
+                    s += str(i - p) + result[p]
+                    p = i
+            result = s + str(len(result) - p) + result[p]
+        return result
 
 
 # @lc code=end
