@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=198 lang=javascript
+ * @lc app=leetcode.cn id=213 lang=javascript
  *
- * [198] 打家劫舍
+ * [213] 打家劫舍 II
  */
 
 // @lc code=start
@@ -10,9 +10,18 @@
  * @return {number}
  */
 var rob = function(nums) {
-  if (nums.length === 0) {
-    return 0;
+  if (nums.length === 1) {
+    return nums[0];
+  } else if (nums.length === 2) {
+    return Math.max(...nums);
+  } else {
+    return Math.max(
+      robI(nums.slice(1)),
+      robI(nums.slice(0, -1)),
+    );
   }
+};
+var robI = function(nums) {
   const dp = [];
   for (let i = 0; i < nums.length; i++) {
     dp[i] = Math.max(
