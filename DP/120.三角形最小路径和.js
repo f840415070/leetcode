@@ -10,17 +10,16 @@
  * @return {number}
  */
 var minimumTotal = function(triangle) {
-  const dp = [triangle[0]];
-  for (let i = 1; i < triangle.length; i++) {
-    dp[i] = [];
-    for (let j = 0; j < dp[i].length; j++) {
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + triangle[i][j],
-        dp[i - 1][j - 1] + triangle[i][j],
+  const tl = triangle.length;
+  for (let i = tl - 2; i >= 0; i--) {
+    for (let j = 0; j < triangle[i].length; j++) {
+      triangle[i][j] += Math.min(
+        triangle[i + 1][j],
+        triangle[i + 1][j + 1],
       );
     }
   }
-  return dp[triangle.length - 1][triangle[0].length - 1];
+  return triangle[0][0];
 };
 // @lc code=end
 
