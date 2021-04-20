@@ -30,7 +30,7 @@ var canPartition = function(nums) {
     return false;
   }
 
-  const dp = Array(length).fill(Array(target + 1));
+  const dp = new Array(length).fill(0).map(_ => new Array(target + 1).fill(false));
   for (let i = 0; i < length; i++) {
     dp[i][0] = true;
   }
